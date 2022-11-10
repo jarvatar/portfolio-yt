@@ -1,4 +1,4 @@
-import type { GetServerSideProps, GetStaticProps, NextPage } from "next";
+import type { GetStaticProps, NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
@@ -78,7 +78,7 @@ const Home = ({ pageInfo, experiences, projects, skills, socials }: Props) => {
 
 export default Home;
 
-export const getServerSideProps: GetServerSideProps<Props> = async () => {
+export const getStaticProps: GetStaticProps<Props> = async () => {
   const pageInfo: PageInfo = await fetchPageInfo();
   const experiences: Experience[] = await fetchExperiences();
   const skills: Skill[] = await fetchSkills();
@@ -96,5 +96,3 @@ export const getServerSideProps: GetServerSideProps<Props> = async () => {
     revalidate: 1000,
   };
 };
-
-// const res = await sanityClient.fetch(query) const experience:Experience[]= res const res2= await sanityClient.fetch(query2) const projects: Project[]=res2 const res3 = await sanityClient.fetch(query3) const skills: Skill[]= res3 const res4 = await sanityClient.fetch(query4) const socials: Social[]= res4
