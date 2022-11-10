@@ -13,10 +13,10 @@ interface Image {
   };
 }
 
-export interface Brand {
-  _type: "image";
-  title: string;
-}
+// export interface Brand {
+//   _type: "image";
+//   title: string;
+// }
 
 export interface PageInfo extends SanityBody {
   _type: "pageInfo";
