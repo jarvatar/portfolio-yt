@@ -1,4 +1,4 @@
-import type { GetStaticProps, NextPage } from "next";
+import type { GetServerSideProps, GetStaticProps, NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
@@ -9,19 +9,13 @@ import Header from "../components/Header";
 import Hero from "../components/Hero";
 import Projects from "../components/Projects";
 import Skills from "../components/Skills";
-import {
-  PageInfo,
-  Experience,
-  Project,
-  Skill,
-  Social,
-  Brand,
-} from "../typings";
+import { PageInfo, Experience, Project, Skill, Social } from "../typings";
 import { fetchPageInfo } from "../utils/fetchPageInfo";
 import { fetchExperiences } from "../utils/fetchExperiences";
 import { fetchSkills } from "../utils/fetchSkills";
 import { fetchProjects } from "../utils/fetchProjects";
 import { fetchSocials } from "../utils/fetchSocials";
+import { sanityClient } from "../sanity";
 
 type Props = {
   pageInfo: PageInfo;
@@ -84,7 +78,7 @@ const Home = ({ pageInfo, experiences, projects, skills, socials }: Props) => {
 
 export default Home;
 
-export const getStaticProps: GetStaticProps<Props> = async () => {
+export const getServerSideProps: GetServerSideProps<Props> = async () => {
   const pageInfo: PageInfo = await fetchPageInfo();
   const experiences: Experience[] = await fetchExperiences();
   const skills: Skill[] = await fetchSkills();
@@ -102,3 +96,5 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
     revalidate: 1000,
   };
 };
+
+// const res = await sanityClient.fetch(query) const experience:Experience[]= res const res2= await sanityClient.fetch(query2) const projects: Project[]=res2 const res3 = await sanityClient.fetch(query3) const skills: Skill[]= res3 const res4 = await sanityClient.fetch(query4) const socials: Social[]= res4
