@@ -93,6 +93,5 @@ export const getServerSideProps: GetServerSideProps<Props> = async () => {
       projects,
       socials,
     },
-    revalidate: 1000,
   };
 };
